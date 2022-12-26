@@ -23,6 +23,16 @@
 <body>
 
   {% include 'includes/navbar.html' %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert--{{message.tags}}">
+        <p class="alert__message">{{message}}</p>
+        <button class="alert__close">⨯</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
   {% block content %}
   
   
