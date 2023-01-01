@@ -60,8 +60,8 @@
                 <p>{{skill.description}}</p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' %}"><i class="im im-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' %}?next=/account"><i class="im im-x-mark-circle-o"></i>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.id %}"><i class="im im-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}?next=/account"><i class="im im-x-mark-circle-o"></i>
                   Delete</a>
               </td>
             </tr>

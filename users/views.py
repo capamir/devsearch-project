@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .utills import searchProfiles, paginateProfiles
 
 # Create your views here.
+# ---------------------Login & Register -----------------------------
 def loginUser(request):
     page = 'login'
 
@@ -64,12 +66,16 @@ def registerUser(request):
     }
     return render(request, 'users/login-register.html', context)
 
-
+# --------------------Profile Read ------------------------------------
 def profiles(request):
-    profiles = Profile.objects.all()
+    profiles, search_query = searchProfiles(request)
+    
+    custom_range, profiles = paginateProfiles(request, profiles, 3)
 
     context = {
         'profiles': profiles,
+        'search_query': search_query,
+        'custom_range': custom_range,
     }
     return render(request, 'users/profiles.html', context)
 
@@ -86,7 +92,7 @@ def profilePage(request, pk):
     }
     return render(request, 'users/user-profile.html', context)
 
-
+# ------------------Account Read & Update ------------------------------
 @login_required(login_url='login')
 def userAccount(request):
     profile = request.user.profile
@@ -118,6 +124,8 @@ def editAccount(request):
     }
     return render(request, 'users/profile-form.html', context)
 
+
+# ------------------Skill Create & Update Delete ------------------------
 
 @login_required(login_url='login')
 def createSkill(request):
