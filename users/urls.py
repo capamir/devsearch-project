@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('account/', views.userAccount, name='account'),
     path('edit-account/', views.editAccount, name='edit-account'),
+    path('inbox/', views.inbox, name='inbox'),
 
     path('create-skill/', views.createSkill, name='create-skill'),
 
@@ -16,5 +17,8 @@ urlpatterns = [
 
     path('update-skill/<str:pk>/', views.updateSkill, name='update-skill'),
     path('delete-skill/<str:pk>/', views.deleteSkill, name='delete-skill'),
+
+    path('message/<str:pk>/', views.viewMessage, name='message'),
+    path('send-message/<str:pk>/', views.createMessage, name='send-message'),
 
 ]

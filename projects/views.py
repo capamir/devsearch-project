@@ -22,6 +22,7 @@ def projects(request):
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
     form = ReviewForm()
+    reviews = projectObj.review_set.all()
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -39,6 +40,7 @@ def project(request, pk):
     context = {
         'project': projectObj,
         'form': form,
+        'reviews': reviews,
     }
     return render(request, 'projects/single-project.html', context)
 

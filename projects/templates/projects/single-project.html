@@ -62,7 +62,7 @@
           {% endif %}
 
           <div class="commentList">
-            {% for review in project.review_set.all %}
+            {% for review in reviews %}
               {% if review.body %}
                 <div class="comment">
                   <a href="{% url 'single-profile' review.owner.id %}">

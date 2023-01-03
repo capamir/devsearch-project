@@ -39,7 +39,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <a href="#" class="btn btn--sub btn--lg">Send Message </a>
+                    <a href="{% url 'send-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     {% for project in profile.project_set.all %}
                     <div class="column">
                         <div class="card project">
-                        <a href="{% url 'single-profile' project.id %}" class="project">
+                        <a href="{% url 'single-project' project.id %}" class="project">
                             <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" />
                             <div class="card__body">
                             <h3 class="project__title">{{project.title}}</h3>
