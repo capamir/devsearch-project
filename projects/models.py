@@ -4,7 +4,7 @@ from users.models import Profile
 
 # Create your models here.
 class Project(models.Model):
-    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     featured_image = models.ImageField(default='default.jpg', blank=True, null=True)
@@ -23,6 +23,14 @@ class Project(models.Model):
     class Meta:
         ordering = ['-vote_ratio', 'vote_total', 'title']
 
+    @property
+    def imageUrl(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = ''
+        return url
+        
     @property
     def getVoteCount(self):
         reviews = self.review_set.all()

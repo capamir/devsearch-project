@@ -139,7 +139,7 @@ def createSkill(request):
         form = SkillForm(request.POST)
         if form.is_valid():
             skill = form.save(commit=False)
-            skill.username = profile
+            skill.owner = profile
             skill.save()
 
             messages.success(request, 'Skill was successfully added')
